@@ -1,12 +1,96 @@
-# React + Vite
+# User Authentication API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and secure RESTful API for user registration and login using Node.js, Express, MongoDB, and bcrypt for password hashing. Designed for integration with frontend applications such as React or mobile clients.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User Registration (with hashed passwords)
+- User Login (with JWT authentication)
+- Input validation
+- CORS support for frontend communication
+- Environment variable configuration
+- MongoDB database connection
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (via Mongoose)
+- **Authentication**: JSON Web Tokens (JWT), bcrypt
+- **Environment Config**: dotenv
+- **Frontend**: Ready to be used with any frontend (React/Vite recommended)
+
+---
+
+## Project Structure
+
+user_authentication_api/
+├── src/
+│ ├── config/
+│ │ └── db.js (MongoDB connection) 
+│ ├── controllers/
+│ │ └── authController.js (Auth logic) 
+│ ├── models/
+│ │ └── User.js (Mongoose schema)
+│ ├── routes/
+│ │ └── auth.js (API endpoints)
+├── .env (Environment variables) 
+├── server.js (Main app file)
+├── package.json
+
+---
+
+##  Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/jerome002/user_authentication_api.git
+cd user_authentication_api
+2. Install dependencies
+## npm install
+3. Create a .env file
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/auth-api
+JWT_SECRET=your_jwt_secret_key
+4. Start the server
+## npm run dev
+Server will run on: http://localhost:5000
+
+ ## API Endpoints
+Method	Endpoint	Description
+POST	/api/auth/register	Register a new user
+POST	/api/auth/login	Login and get JWT
+
+#Sample Request (Register)
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Jerome",
+  "email": "jerome@gmail.com",
+  "password": "123456"
+}
+
+#Sample Request (Login)
+
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "123456"
+}
+### Security Best Practices
+Passwords are hashed using bcrypt before saving.
+
+JWT tokens are used for secure authentication.
+
+Secrets and DB credentials are stored in .env.
+
+
+## Author
+Jerome Kapkor Kimosop
+Github: https://github.com/jerome002 |LinkedIn: https://www.linkedin.com/in/jerome-kapkor-6640b3191/
+
